@@ -48,6 +48,13 @@ describe('GitUserSearchController', function() {
       expect(ctrl.searchResult.items).toEqual(items);
     });
 
+    it('displays no results if search term is empty string', function() {
+      ctrl.searchTerm = '';
+      ctrl.doSearch();
+      expect(ctrl.searchResult).toBeNull();
+      expect(fakeSearch.query).not.toHaveBeenCalled();
+    })
+
   });
 
 });

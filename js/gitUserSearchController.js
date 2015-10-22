@@ -3,10 +3,14 @@ githubUserSearch.controller('GitUserSearchController', ['Search', function(Searc
   var self = this;
 
   self.doSearch = function (){
-    Search.query(self.searchTerm)
-      .then(function(response) {
-        self.searchResult = response.data;
-      })
+    if (self.searchTerm) {
+      Search.query(self.searchTerm)
+        .then(function(response) {
+          self.searchResult = response.data;
+        })
+    } else {
+      self.searchResult = null;
+    }
   };
 
 }]);
