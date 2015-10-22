@@ -18,4 +18,17 @@ describe('Github Profile finder', function() {
     expect(element(by.binding('user.login')).getText()).
         toEqual('spike01');
   });
+
+  it('finds profiles', function() {
+
+    searchBox.sendKeys('spike');
+    searchButton.click();
+
+    var profiles = element.all(by.repeater('user in searchCtrl.searchResult.items'));
+    var names = profiles.map(function(user){
+      return user.getText();
+    });
+    expect(names).toContain('spike01');
+  });
+
 });
